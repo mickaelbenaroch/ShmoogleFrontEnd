@@ -1,0 +1,18 @@
+<main>
+    <div class="logo-div">
+        <img src="/assets/LOGO.svg" class="logo"> 
+        <span class="logo-slogan">An artisanal search engine</span>
+    </div>
+    <div class="input-div">
+        <input type="text" class="input" [(ngModel)]="text">
+        <img src="/assets/search-icon.png" class="search-icon" (click)="search()">
+    </div>
+    <div class="result-div">
+        <span class="result-span">Result no. <span class="result-inside">{{numberResult}}</span> just got clicked!</span>
+    </div>
+</main>
+
+<div *ngFor="let res of result">
+    <p>{{res.snippet}}</p>
+</div>
+

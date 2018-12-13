@@ -1,0 +1,53 @@
+main{
+    background: #ededed;
+    text-align: center;
+    height: 100%;
+}
+
+.logo-div{
+    padding-top: 212px;
+}
+
+.logo{
+    width: 430px;
+    height: 150px;
+}
+
+.logo-slogan{
+    position: absolute;
+    top: 332px;
+    right: 368px;
+    color: #f27a7a;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.input{
+    width: 365px;
+    height: 42px;
+    padding-left: 1rem;
+    border: solid 1px lightgray;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.search-icon{
+    width: 46px;
+    position: relative;
+    right: 52px;
+    top: 17px;
+    cursor: pointer;
+}
+
+.result-div{
+    margin-top: 37.8px;
+}
+
+.result-span{
+    color: #707dd3;
+}
+
+.result-inside{
+    color: #85d7d4;
+}
