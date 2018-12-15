@@ -4,7 +4,7 @@
         <span class="logo-slogan">An artisanal search engine</span>
     </div>
     <div class="input-div">
-        <input type="text" class="input" [(ngModel)]="text">
+        <input type="text" class="input" [(ngModel)]="text" (keyup)="CheckEnterKey($event)">
         <img src="/assets/search-icon.png" class="search-icon" (click)="search()">
     </div>
     <div class="result-div">
@@ -12,7 +12,5 @@
     </div>
 </main>
 
-<div *ngFor="let res of result">
-    <p>{{res.snippet}}</p>
-</div>
+
 
