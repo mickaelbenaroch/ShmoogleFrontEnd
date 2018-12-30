@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ResultModel } from '../../Models/resultmodel';
 import { Router } from '@angular/router';
 import { ResultsServiceService } from '../../Services/results-service.service';
+import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-sercice/analytic-sercice.component';
 
 @Component({
   selector: 'app-landing',
@@ -19,7 +20,8 @@ export class LandingComponent implements OnInit {
   //#region Constructor + LideCycle Hooks
   constructor(public httpservice: HttpClient,
               public navservice: Router,
-              public resultservice: ResultsServiceService) { }
+              public resultservice: ResultsServiceService,
+              public analyticservice: GoogleAnalyticsEventsService) { }
   //#endregion
 
   //#region  Public Methods
@@ -31,10 +33,11 @@ export class LandingComponent implements OnInit {
   //#endregion
 
   public search(): void{
-    //TO DO: Complete integration with backend
-    this.httpservice.get('https://peaceful-woodland-53655.herokuapp.com/shmoogle/' + this.text).subscribe(
-      response =>{
-        this.resultservice.resultsArray = response[0]
+    this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
+    this.httpservice.get('https://shmoogle.herokuapp.com/shmoogleShuffle/:' + this.text).subscribe(
+      //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe(
+    (response: ResultModel[]) =>{
+        this.resultservice.resultsArray = response;
         console.log(response);
         this.navservice.navigateByUrl("results");
       },

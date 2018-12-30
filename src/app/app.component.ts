@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent  implements OnInit{
   title = 'app';
-
+  //ng build -prod --base-href /public_html  --deploy-url /shmoogleV3
 
   constructor(){}
   ngOnInit(){

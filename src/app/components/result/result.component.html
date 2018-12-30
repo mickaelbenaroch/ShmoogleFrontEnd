@@ -2,7 +2,7 @@
 
 <div class="envelop">
   <div class="div-1">
-    <img src="/assets/LOGO.svg" class="logo"> 
+    <img src="shmoogleV3/assets/LOGO.svg" class="logo"> 
   </div>
   <div class="div-2">
     <input type="text" class="input" [(ngModel)]="text" (keyup)="CheckEnterKey($event)"></div>
@@ -14,7 +14,7 @@
 <main class="results-container">
   <div class="counter">Showing {{counter}} results</div>
   <div class="result-div" *ngFor="let res of results; let i = index">
-      <div class="original-position">Original Position: {{i}}</div>
+      <div class="original-position">Original Position: {{res.id.charAt(res.id.length-1)}}</div>
       <div class="title">{{res.name}}</div>
       <a class="url">{{res.url}}</a>
       <div class="content">{{res.snippet}}</div>

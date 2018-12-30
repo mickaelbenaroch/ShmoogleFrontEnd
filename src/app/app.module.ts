@@ -7,6 +7,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './components/result/result.component';
 import { ResultsServiceService } from './Services/results-service.service';
+import { GoogleAnalyticsEventsService } from './Services/analytics/analytic-sercice/analytic-sercice.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LandingComponent,
-    ResultComponent
+    ResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     )
   ],
   providers: [
-    ResultsServiceService
+    ResultsServiceService,
+    GoogleAnalyticsEventsService,
   ],
   bootstrap: [AppComponent]
 })

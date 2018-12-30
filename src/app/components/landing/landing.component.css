@@ -14,9 +14,9 @@ main{
 }
 
 .logo-slogan{
-    position: absolute;
-    top: 332px;
-    right: 368px;
+    position: relative;
+    top: -21px;
+    right: 88px;
     color: #f27a7a;
     font-size: 16px;
     font-weight: bold;

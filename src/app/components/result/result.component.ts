@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ResultModel } from '../../Models/resultmodel';
 import { ResultsServiceService } from '../../Services/results-service.service';
 import { HttpClient } from '@angular/common/http';
+import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-sercice/analytic-sercice.component';
 
 @Component({
   selector: 'app-result',
@@ -12,23 +13,28 @@ export class ResultComponent implements OnInit {
 
   @Input() results: ResultModel[];
   public text: string;
-  public counter: number = 10;
+  public counter: number = 0;
   constructor(public resultservice: ResultsServiceService,
-              public httpservice: HttpClient,) { }
+              public httpservice: HttpClient,
+              public analyticservice: GoogleAnalyticsEventsService) { }
 
   ngOnInit() {
-    this.results = this.resultservice.resultsArray
+    this.results = this.resultservice.resultsArray;
+    this.counter = this.resultservice.resultsArray.length;
   }
 
   /*
    * Searches in bing motor
    */
   public search(): void{
-    //TO DO: Complete integration with backend
-    this.httpservice.get('https://peaceful-woodland-53655.herokuapp.com/shmoogle/' + this.text).subscribe(
-      response =>{
-        this.results = response[0]
+    this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
+    this.httpservice.get('https://shmoogle.herokuapp.com/shmoogleShuffle/:'+ this.text).subscribe(
+    //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe( 
+    (response: ResultModel[]) =>{
+        this.results = response;
+        this.results[0].id
         console.log(response);
+        this.counter = response.length;
       },
       error =>{
         console.log(error);
