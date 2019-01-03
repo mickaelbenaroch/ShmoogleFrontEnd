@@ -8,4 +8,5 @@ public language: string;
 public name: string;
 public snippet: string;
 public url: string;
+public originalResultIndex: any;
 }
