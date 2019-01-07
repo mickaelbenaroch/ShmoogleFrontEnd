@@ -30,6 +30,7 @@ export class ResultComponent implements OnInit {
    * Searches in bing motor
    */
   public search(): void{
+    //appInsights.trackEvent("Added Item to Shopping Cart")
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
     this.httpservice.get('https://shmoogle.herokuapp.com/shmoogleShuffle/:'+ this.text).subscribe(
     //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe( 

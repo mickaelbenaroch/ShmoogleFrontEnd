@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './components/result/result.component';
 import { ResultsServiceService } from './Services/results-service.service';
 import { GoogleAnalyticsEventsService } from './Services/analytics/analytic-sercice/analytic-sercice.component';
+import { InsightsServiceComponent } from './Services/analytics/insights-service/insights-service.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   providers: [
     ResultsServiceService,
     GoogleAnalyticsEventsService,
+    InsightsServiceComponent
   ],
   bootstrap: [AppComponent]
 })
