@@ -1,13 +1,13 @@
 <main>
     <div class="logo-div">
-        <!---<img src="shmoogleV3/assets/LOGO.svg" class="logo"> -->
-        <img src="/assets/LOGO.svg" class="logo"> 
+        <img src="shmoogleV3/assets/LOGO.svg" class="logo"> 
+        <!-- <img src="/assets/LOGO.svg" class="logo"> -->
         <div class="logo-slogan">An artisanal search engine</div>
     </div>
     <div class="input-div">
         <input type="text" class="input" [(ngModel)]="text" (keyup)="CheckEnterKey($event)">
-        <!-- <img src="shmoogleV3/assets/search-icon.png" class="search-icon" (click)="search()"> -->
-        <img src="/assets/search-icon.png" class="search-icon" (click)="search()">
+        <img src="shmoogleV3/assets/search-icon.png" class="search-icon" (click)="search()"> 
+        <!-- <img src="/assets/search-icon.png" class="search-icon" (click)="search()"> -->
     </div>
     <div class="result-div">
         <span class="result-span">Result no. <span class="result-inside">{{numberResult}}</span> just got clicked!</span>
