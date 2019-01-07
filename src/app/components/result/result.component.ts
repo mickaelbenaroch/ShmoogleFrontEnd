@@ -3,6 +3,7 @@ import { ResultModel } from '../../Models/resultmodel';
 import { ResultsServiceService } from '../../Services/results-service.service';
 import { HttpClient } from '@angular/common/http';
 import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-sercice/analytic-sercice.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -16,11 +17,13 @@ export class ResultComponent implements OnInit {
   public counter: number = 0;
   constructor(public resultservice: ResultsServiceService,
               public httpservice: HttpClient,
-              public analyticservice: GoogleAnalyticsEventsService) { }
+              public analyticservice: GoogleAnalyticsEventsService,
+              public navservice: Router) { }
 
   ngOnInit() {
     this.results = this.resultservice.resultsArray;
-    this.counter = this.resultservice.resultsArray.length;
+    if(this.resultservice.resultsArray !== undefined)
+      this.counter = this.resultservice.resultsArray.length;
   }
 
   /*
@@ -51,6 +54,13 @@ export class ResultComponent implements OnInit {
       }else{
         return;
       }
+    }
+
+    /**
+     * Navigates to home page
+     */
+    public returnHome():void{
+      this.navservice.navigateByUrl("/");
     }
   
 

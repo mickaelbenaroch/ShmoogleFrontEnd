@@ -5,7 +5,9 @@
     background-color: rgb(250,250,250);
     border-bottom: 1px #eee solid;
 }
-.div-1{}
+.div-1{
+    cursor: pointer;
+}
 .div-2{}
 .div-3{
     margin-left: 40px;
@@ -79,4 +81,29 @@
 .result-div{
     margin-top: 30px;
     font-family: Arial, sans-serif;
+}
+
+@media only screen and (max-width: 768px) {
+    .envelop{
+        flex-wrap: wrap;
+        display: flex;
+    }
+    .logo{
+        width: 129px;
+        height: 58px;
+        margin: 7px;
+    }
+    .input{
+        width: 170px;
+        margin-left: 10px;
+    }
+    .div-3{
+        margin: auto;
+    }
+    .url{
+        display: block;
+        width: 100%;
+        word-wrap: break-word;
+        white-space: unset;
+    }
 }

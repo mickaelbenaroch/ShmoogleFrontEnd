@@ -1,8 +1,9 @@
 
 
 <div class="envelop">
-  <div class="div-1">
-    <img src="shmoogleV3/assets/LOGO.svg" class="logo"> 
+  <div class="div-1" (click)="returnHome()">
+    <!--<img src="shmoogleV3/assets/LOGO.svg" class="logo"> -->
+    <img src="/assets/LOGO.svg" class="logo"> 
   </div>
   <div class="div-2">
     <input type="text" class="input" [(ngModel)]="text" (keyup)="CheckEnterKey($event)"></div>

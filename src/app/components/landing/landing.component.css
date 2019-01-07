@@ -6,17 +6,23 @@ main{
 
 .logo-div{
     padding-top: 212px;
+    display: flex;
+    flex-direction: column;
 }
 
 .logo{
     width: 430px;
+    display: block;
+    margin: auto;
     height: 150px;
 }
 
 .logo-slogan{
+    width: 20%;
+    margin: auto;
     position: relative;
-    top: -21px;
-    right: 88px;
+    left: 222px;
+    bottom: 19px;
     color: #f27a7a;
     font-size: 16px;
     font-weight: bold;
@@ -46,8 +52,38 @@ main{
 
 .result-span{
     color: #707dd3;
+    visibility: hidden;
 }
 
 .result-inside{
     color: #85d7d4;
 }
+
+@media only screen and (max-width: 600px) {
+    .logo-div{
+        padding-top: 80px;
+    }
+    .logo{
+        width: 265px;
+    }
+    .logo-slogan{
+        width: 52%;
+        margin: auto;
+        position: relative;
+        left: 72px;
+        bottom: 28px;
+        font-size: 11px;
+    }
+    .input{
+        display: block;
+        width: 78%;
+        margin: auto;
+        height: 42px;
+    }
+    .search-icon{
+        width: 41px;
+        position: relative;
+        right: -113px;
+        top: -46px;
+    }
+  }
