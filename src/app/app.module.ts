@@ -9,6 +9,9 @@ import { ResultComponent } from './components/result/result.component';
 import { ResultsServiceService } from './Services/results-service.service';
 import { GoogleAnalyticsEventsService } from './Services/analytics/analytic-sercice/analytic-sercice.component';
 import { InsightsServiceComponent } from './Services/analytics/insights-service/insights-service.component';
+import {MatDialogModule} from "@angular/material";
+import { ErrorDialogBoxComponent } from './components/error-dialog-box/error-dialog-box.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -22,10 +25,13 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     ResultComponent,
+    ErrorDialogBoxComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    MatDialogModule,
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
@@ -37,6 +43,7 @@ const appRoutes: Routes = [
     GoogleAnalyticsEventsService,
     InsightsServiceComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorDialogBoxComponent]
 })
 export class AppModule { }

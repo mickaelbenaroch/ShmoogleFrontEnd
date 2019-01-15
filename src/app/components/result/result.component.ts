@@ -4,6 +4,8 @@ import { ResultsServiceService } from '../../Services/results-service.service';
 import { HttpClient } from '@angular/common/http';
 import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-sercice/analytic-sercice.component';
 import { Router } from '@angular/router';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { ErrorDialogBoxComponent } from '../error-dialog-box/error-dialog-box.component';
 
 @Component({
   selector: 'app-result',
@@ -12,20 +14,27 @@ import { Router } from '@angular/router';
 })
 export class ResultComponent implements OnInit {
 
+  //#region Public Members
   @Input() results: ResultModel[];
   public text: string;
   public counter: number = 0;
+  //#endregion
+
+  //#region Constructor & Lifecycle Hooks
   constructor(public resultservice: ResultsServiceService,
               public httpservice: HttpClient,
               public analyticservice: GoogleAnalyticsEventsService,
-              public navservice: Router) { }
+              public navservice: Router,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.results = this.resultservice.resultsArray;
     if(this.resultservice.resultsArray !== undefined)
       this.counter = this.resultservice.resultsArray.length;
   }
+  //#endregion
 
+  //#region Public Members
   /*
    * Searches in bing motor
    */
@@ -63,6 +72,19 @@ export class ResultComponent implements OnInit {
     public returnHome():void{
       this.navservice.navigateByUrl("/");
     }
+
+     /**
+     * Opens the error dialog box
+     */
+    public openDialog(): void{
+    
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.height = "500px";
+      dialogConfig.width = "500px";
+      dialogConfig.panelClass = "dialog";
+      this.dialog.open(ErrorDialogBoxComponent, dialogConfig);
+    }
+    //#endregion
   
 
 }

@@ -4,6 +4,8 @@ import { ResultModel } from '../../Models/resultmodel';
 import { Router } from '@angular/router';
 import { ResultsServiceService } from '../../Services/results-service.service';
 import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-sercice/analytic-sercice.component';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { ErrorDialogBoxComponent } from '../error-dialog-box/error-dialog-box.component';
 
 @Component({
   selector: 'app-landing',
@@ -21,17 +23,14 @@ export class LandingComponent implements OnInit {
   constructor(public httpservice: HttpClient,
               public navservice: Router,
               public resultservice: ResultsServiceService,
-              public analyticservice: GoogleAnalyticsEventsService) { }
-  //#endregion
+              public analyticservice: GoogleAnalyticsEventsService,
+              private dialog: MatDialog) { }
 
-  //#region  Public Methods
   public ngOnInit(): void {
   }
   //#endregion
 
-  //#region  Private Methods
-  //#endregion
-
+  //#region  Public Methods
   public search(): void{
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
     this.httpservice.get('https://shmoogle.herokuapp.com/shmoogleShuffle/:' + this.text).subscribe(
@@ -42,6 +41,7 @@ export class LandingComponent implements OnInit {
         this.navservice.navigateByUrl("results");
       },
       error =>{
+        this.openDialog();
         console.log(error);
       })
     }
@@ -57,4 +57,18 @@ export class LandingComponent implements OnInit {
         return;
       }
     }
+
+    /**
+     * Opens the error dialog box
+     */
+    public openDialog(): void{
+    
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.height = "500px";
+      dialogConfig.width = "500px";
+      dialogConfig.panelClass = "dialog";
+      this.dialog.open(ErrorDialogBoxComponent, dialogConfig);
+    }
+  //#endregion
+
 }

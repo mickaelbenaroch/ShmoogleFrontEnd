@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $ ;
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,9 @@ export class AppComponent  implements OnInit{
 
   constructor(){
   }
-  ngOnInit(){
 
-  }
+  ngOnInit(){}
+
 }
 
 

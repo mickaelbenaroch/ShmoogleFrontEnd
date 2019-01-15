@@ -1,89 +1,111 @@
-main{
-    background: #ededed;
-    text-align: center;
-    height: 100%;
+header{
+  padding-top: 58px;
+  padding-left: 57px;
 }
 
-.logo-div{
-    padding-top: 212px;
-    display: flex;
-    flex-direction: column;
+.small-logo{
+  width: 52px;
+  height: 32px;
 }
 
-.logo{
-    width: 430px;
-    display: block;
-    margin: auto;
-    height: 150px;
+.main-logo-div{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.logo-slogan{
-    width: 20%;
-    margin: auto;
-    position: relative;
-    left: 222px;
-    bottom: 19px;
-    color: #f27a7a;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: sans-serif;
+.main-logo{
+  margin-top: 306px;
 }
 
 .input{
-    width: 365px;
-    height: 42px;
-    padding-left: 1rem;
-    border: solid 1px lightgray;
-    font-size: 18px;
-    font-family: sans-serif;
+  width: 596px;
+  margin-top: 75px;
+  height: 52px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  height: 52px;
+  border-bottom: 1px solid darkgrey;
+  font-size: 25px;
+  color: #4C4C4C;	
+  font-family: "Open Sans";	
+  letter-spacing: 2px;
+  padding-left: 5px;
 }
-
+ 
 .search-icon{
-    width: 46px;
-    position: relative;
-    right: 52px;
-    top: 17px;
-    cursor: pointer;
+  width: 28px;
+  height: 25px;
+  position: relative;
+  right: 29px;
+  top: 9px;
+  cursor: pointer;
 }
 
-.result-div{
-    margin-top: 37.8px;
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  height: 18px;	
+  width: 206px;	
+  color: #4C4C4C;	
+  font-family: "Open Sans";	
+  font-size: 25px;	
+  font-weight: 300;	
+  line-height: 0;
+  padding-top: 10px;
+  letter-spacing: 2px;
+  padding-left: 5px;
 }
-
-.result-span{
-    color: #707dd3;
-    visibility: hidden;
+::-moz-placeholder { /* Firefox 19+ */
+  height: 18px;	
+  width: 206px;	
+  color: #4C4C4C;	
+  font-family: "Open Sans";	
+  font-size: 25px;	
+  font-weight: 300;	
+  line-height: 0;
+  padding-top: 10px;
+  letter-spacing: 2px;
+  padding-left: 5px;
 }
-
-.result-inside{
-    color: #85d7d4;
+:-ms-input-placeholder { /* IE 10+ */
+  height: 18px;	
+  width: 206px;	
+  color: #4C4C4C;	
+  font-family: "Open Sans";	
+  font-size: 25px;	
+  font-weight: 300;	
+  line-height: 0;
+  padding-top: 10px;
+  letter-spacing: 2px;
+  padding-left: 5px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  height: 18px;	
+  width: 206px;	
+  color: #4C4C4C;	
+  font-family: "Open Sans";	
+  font-size: 25px;	
+  font-weight: 300;	
+  line-height: 0;
+  padding-top: 10px;
+  letter-spacing: 2px;
+  padding-left: 5px;
 }
 
 @media only screen and (max-width: 600px) {
-    .logo-div{
-        padding-top: 80px;
-    }
-    .logo{
-        width: 265px;
-    }
-    .logo-slogan{
-        width: 52%;
-        margin: auto;
-        position: relative;
-        left: 72px;
-        bottom: 28px;
-        font-size: 11px;
-    }
-    .input{
-        display: block;
-        width: 78%;
-        margin: auto;
-        height: 42px;
-    }
-    .search-icon{
-        width: 41px;
-        position: relative;
-        right: -113px;
-        top: -46px;
-    }
+  .main-logo{
+    width: 85%;
+    margin-top: 150px;
   }
+  .input{
+    width: 90%;
+  }
+  .search-icon{
+    right: -10px;
+    top: 95px;
+  }
+  .input-div{
+    display: flex;
+  }
+
+}
