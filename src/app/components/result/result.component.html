@@ -18,7 +18,7 @@
   <div class="result-div" *ngFor="let res of results; let i = index">
       <div class="original-position">Original Position: {{res.originalResultIndex}}</div>
       <div class="title">{{res.name}}</div>
-      <a class="url">{{res.url}}</a>
+      <a href="{{res.url}}" class="url">{{res.url}}</a>
       <div class="content">{{res.snippet}}</div>
   </div>
 </main>

@@ -62,7 +62,6 @@ header{
   font-family: "Open Sans";	
   font-size: 25px;	
   font-weight: 300;	
-  line-height: 0;
   padding-top: 10px;
   letter-spacing: 2px;
   padding-left: 5px;
@@ -86,11 +85,21 @@ header{
   font-family: "Open Sans";	
   font-size: 25px;	
   font-weight: 300;	
-  line-height: 0;
   padding-top: 10px;
   letter-spacing: 2px;
   padding-left: 5px;
 }
+::-webkit-input-placeholder { 
+  height: 18px;	
+  width: 206px;	
+  color: #4C4C4C;	
+  font-family: "Open Sans";	
+  font-size: 25px;	
+  font-weight: 300;	
+  letter-spacing: 2px;
+  padding-left: 5px;
+  
+ }
 
 @media only screen and (max-width: 600px) {
   .main-logo{
