@@ -6,6 +6,7 @@ import { ResultsServiceService } from '../../Services/results-service.service';
 import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-sercice/analytic-sercice.component';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { ErrorDialogBoxComponent } from '../error-dialog-box/error-dialog-box.component';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-landing',
@@ -24,7 +25,8 @@ export class LandingComponent implements OnInit {
               public navservice: Router,
               public resultservice: ResultsServiceService,
               public analyticservice: GoogleAnalyticsEventsService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private spinerservice: Ng4LoadingSpinnerService) { }
 
   public ngOnInit(): void {
   }
@@ -32,10 +34,12 @@ export class LandingComponent implements OnInit {
 
   //#region  Public Methods
   public search(): void{
+    this.spinerservice.show();
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(
       //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe(
     (response: ResultModel[]) =>{
+        this.spinerservice.hide();
         this.resultservice.resultsArray = response;
         console.log(response);
         this.navservice.navigateByUrl("results");

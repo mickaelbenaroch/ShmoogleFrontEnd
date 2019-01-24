@@ -6,6 +6,7 @@ import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-
 import { Router } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { ErrorDialogBoxComponent } from '../error-dialog-box/error-dialog-box.component';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-result',
@@ -25,7 +26,8 @@ export class ResultComponent implements OnInit {
               public httpservice: HttpClient,
               public analyticservice: GoogleAnalyticsEventsService,
               public navservice: Router,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private spinerservice: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
     this.results = this.resultservice.resultsArray;
@@ -39,11 +41,11 @@ export class ResultComponent implements OnInit {
    * Searches in bing motor
    */
   public search(): void{
-    //appInsights.trackEvent("Added Item to Shopping Cart")
+    this.spinerservice.show();
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
-    //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe( 
     (response: ResultModel[]) =>{
+      this.spinerservice.hide();
         this.results = response;
         this.results[0].id
         console.log(response);

@@ -27,11 +27,12 @@
     "applicationinsights-js": "^1.0.8",
     "core-js": "^2.6.2",
     "jquery": "^3.3.1",
+    "ng4-loading-spinner": "^1.2.3",
     "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.0.0-rc.0",
     "shuffle-array": "^1.0.1",
     "tslib": "^1.9.0",
-    "zone.js": "^0.8.27",
-    "rxjs-compat": "^6.0.0-rc.0"
+    "zone.js": "^0.8.27"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.12.0",

@@ -12,6 +12,8 @@ import { InsightsServiceComponent } from './Services/analytics/insights-service/
 import {MatDialogModule} from "@angular/material";
 import { ErrorDialogBoxComponent } from './components/error-dialog-box/error-dialog-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    Ng4LoadingSpinnerModule.forRoot() 
   ],
   providers: [
     ResultsServiceService,
