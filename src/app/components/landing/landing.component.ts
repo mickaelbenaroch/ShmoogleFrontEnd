@@ -33,7 +33,7 @@ export class LandingComponent implements OnInit {
   //#region  Public Methods
   public search(): void{
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
-    this.httpservice.get('https://shmoogle.herokuapp.com/shmoogleShuffle/:' + this.text).subscribe(
+    this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(
       //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe(
     (response: ResultModel[]) =>{
         this.resultservice.resultsArray = response;

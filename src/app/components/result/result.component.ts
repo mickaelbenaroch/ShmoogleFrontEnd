@@ -41,7 +41,7 @@ export class ResultComponent implements OnInit {
   public search(): void{
     //appInsights.trackEvent("Added Item to Shopping Cart")
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
-    this.httpservice.get('https://shmoogle.herokuapp.com/shmoogleShuffle/:'+ this.text).subscribe(
+    this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
     //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe( 
     (response: ResultModel[]) =>{
         this.results = response;
