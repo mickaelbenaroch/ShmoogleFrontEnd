@@ -17,7 +17,7 @@ export class ResultComponent implements OnInit {
 
   //#region Public Members
   @Input() results: ResultModel[];
-  public text: string;
+  @Input() text: string;
   public counter: number = 0;
   //#endregion
 
@@ -30,15 +30,15 @@ export class ResultComponent implements OnInit {
               private spinerservice: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
+    // var storage = localStorage.getItem('search');
+    // if(storage !== undefined && storage !== null && storage !== ""){
+    //     this.text = storage;
+    //     this.search();
+    // }
     this.results = this.resultservice.resultsArray;
     if(this.resultservice.resultsArray !== undefined)
       this.counter = this.resultservice.resultsArray.length;
 
-    var storage = localStorage.getItem('search');
-    if(storage !== undefined && storage !== null && storage !== ""){
-        this.text = storage;
-        this.search();
-    }
   }
   //#endregion
 
@@ -79,7 +79,7 @@ export class ResultComponent implements OnInit {
      * Navigates to home page
      */
     public returnHome():void{
-      this.navservice.navigateByUrl("/");
+      this.resultservice.landing = true;
     }
 
      /**

@@ -17,7 +17,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'results',      component:  ResultComponent},
+  //{ path: 'results', component:  ResultComponent},
   { path: '**', component: LandingComponent }
 ];
 

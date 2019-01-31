@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { ErrorDialogBoxComponent } from '../error-dialog-box/error-dialog-box.component';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { $ } from 'protractor';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-landing',
@@ -30,9 +31,21 @@ export class LandingComponent implements OnInit {
               public resultservice: ResultsServiceService,
               public analyticservice: GoogleAnalyticsEventsService,
               private dialog: MatDialog,
-              private spinerservice: Ng4LoadingSpinnerService) { }
+              private spinerservice: Ng4LoadingSpinnerService,
+              private location: PlatformLocation) { 
+                location.onPopState(() => {
+
+                  console.log('pressed back!');
+          
+              });
+              }
 
   public ngOnInit(): void {
+    var storage = localStorage.getItem('search');
+    if(storage !== undefined && storage !== null && storage !== ""){
+        this.text = storage;
+        this.search();
+    }
     setTimeout(()=>{
       var element =  document.getElementById("footer");
       element.style.visibility = "visible";
@@ -53,7 +66,8 @@ export class LandingComponent implements OnInit {
         this.spinerservice.hide();
         this.resultservice.resultsArray = response;
         console.log(response);
-        this.navservice.navigateByUrl("results");
+        this.resultservice.landing = false;
+        //this.navservice.navigateByUrl("results");
       },
       error =>{
         this.openDialog();
