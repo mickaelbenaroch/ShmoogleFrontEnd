@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResultModel } from '../../Models/resultmodel';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { PlatformLocation } from '@angular/common';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy{
 
   //#region Public Members
   @Input() numberResult: number = 3434;
@@ -41,7 +41,7 @@ export class LandingComponent implements OnInit {
               }
 
   public ngOnInit(): void {
-    var storage = localStorage.getItem('search');
+    var storage = sessionStorage.getItem('search');
     if(storage !== undefined && storage !== null && storage !== ""){
         this.text = storage;
         this.search();
@@ -53,11 +53,16 @@ export class LandingComponent implements OnInit {
       element.classList.add("bounceInUp");
     },3000)
   }
+
+  public ngOnDestroy(): void {
+   sessionStorage.clear();
+  }
+
   //#endregion 
 
   //#region  Public Methods
   public search(): void{
-    localStorage.setItem('search', this.text);
+    sessionStorage.setItem('search', this.text);
     this.spinerservice.show();
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(

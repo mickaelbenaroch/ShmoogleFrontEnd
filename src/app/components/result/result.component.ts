@@ -30,7 +30,7 @@ export class ResultComponent implements OnInit {
               private spinerservice: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
-    // var storage = localStorage.getItem('search');
+    // var storage = sessionStorage.getItem('search');
     // if(storage !== undefined && storage !== null && storage !== ""){
     //     this.text = storage;
     //     this.search();
@@ -47,7 +47,7 @@ export class ResultComponent implements OnInit {
    * Searches in bing motor
    */
   public search(): void{
-    localStorage.setItem('search', this.text);
+    sessionStorage.setItem('search', this.text);
     this.spinerservice.show();
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
