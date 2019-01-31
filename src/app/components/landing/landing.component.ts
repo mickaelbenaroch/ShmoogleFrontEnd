@@ -30,10 +30,11 @@ export class LandingComponent implements OnInit {
 
   public ngOnInit(): void {
   }
-  //#endregion
+  //#endregion 
 
   //#region  Public Methods
   public search(): void{
+    localStorage.setItem('search', this.text);
     this.spinerservice.show();
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(
