@@ -7,6 +7,7 @@ import { GoogleAnalyticsEventsService } from '../../Services/analytics/analytic-
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { ErrorDialogBoxComponent } from '../error-dialog-box/error-dialog-box.component';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-landing',
@@ -18,6 +19,9 @@ export class LandingComponent implements OnInit {
   //#region Public Members
   @Input() numberResult: number = 3434;
   public text: string = "";
+  public email: string = "";
+  public error: boolean;
+  public afterMail: boolean;
   //#endregion
 
   //#region Constructor + LideCycle Hooks
@@ -29,6 +33,12 @@ export class LandingComponent implements OnInit {
               private spinerservice: Ng4LoadingSpinnerService) { }
 
   public ngOnInit(): void {
+    setTimeout(()=>{
+      var element =  document.getElementById("footer");
+      element.style.visibility = "visible";
+      element.classList.add("animated");
+      element.classList.add("bounceInUp");
+    },3000)
   }
   //#endregion 
 
@@ -74,6 +84,47 @@ export class LandingComponent implements OnInit {
       dialogConfig.panelClass = "dialog";
       this.dialog.open(ErrorDialogBoxComponent, dialogConfig);
     }
+
+    /**
+     * Send the email
+     */
+    public Send():void{
+      if(this.validateEmail(this.email)){
+        //send to backend
+        console.log("email " + this.email);
+        this.afterMail = true;
+
+        setTimeout(() => {
+          var elem = document.getElementById("footer");
+          elem.style.display = "none";
+        },4000)
+      }else{
+        this.error = true;
+      }
+    }
+
+    /**
+     * Close email box
+     */
+    public CloseEmail():void{
+      document.getElementById("footer").style.display = "none";
+    }
+
+    /**
+     * Disable error on mail input
+     * @param email 
+     */
+    public DisableError():void{debugger;
+      if(this.error)
+        this.error = false;
+    }
+  //#endregion
+
+  //#region Private Methods
+  public validateEmail(email): boolean {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
   //#endregion
 
 }

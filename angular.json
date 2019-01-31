@@ -21,6 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "node_modules/animate.css/animate.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -75,6 +76,7 @@
               "node_modules/jquery/dist/jquery.min.js"
             ],
             "styles": [
+              "node_modules/animate.css/animate.css",
               "src/styles.css"
             ],
             "assets": [
