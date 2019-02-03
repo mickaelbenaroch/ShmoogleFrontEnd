@@ -9,6 +9,7 @@ import { ErrorDialogBoxComponent } from '../error-dialog-box/error-dialog-box.co
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { $ } from 'protractor';
 import { PlatformLocation } from '@angular/common';
+import { EmailModel } from '../../Models/EmailModel';
 
 @Component({
   selector: 'app-landing',
@@ -23,6 +24,7 @@ export class LandingComponent implements OnInit, OnDestroy{
   public email: string = "";
   public error: boolean;
   public afterMail: boolean;
+  public EmailModel: EmailModel = new EmailModel();
   //#endregion
 
   //#region Constructor + LideCycle Hooks
@@ -48,9 +50,11 @@ export class LandingComponent implements OnInit, OnDestroy{
     }
     setTimeout(()=>{
       var element =  document.getElementById("footer");
-      element.style.visibility = "visible";
-      element.classList.add("animated");
-      element.classList.add("bounceInUp");
+      if(element !== null){
+        element.style.visibility = "visible";
+        element.classList.add("animated");
+        element.classList.add("bounceInUp");
+      }
     },3000)
   }
 
@@ -75,6 +79,7 @@ export class LandingComponent implements OnInit, OnDestroy{
         //this.navservice.navigateByUrl("results");
       },
       error =>{
+        this.spinerservice.hide();
         this.openDialog();
         console.log(error);
       })
@@ -105,18 +110,37 @@ export class LandingComponent implements OnInit, OnDestroy{
     }
 
     /**
+     * Closes error dialog box
+     */
+    public CloseDialogError():void{
+      this.dialog.closeAll();
+    }
+
+    /**
      * Send the email
      */
     public Send():void{
       if(this.validateEmail(this.email)){
+        this.spinerservice.show();
+        var request = {
+          "email": this.email
+        }
+        this.EmailModel.email = this.email;
         //send to backend
-        console.log("email " + this.email);
-        this.afterMail = true;
-
-        setTimeout(() => {
-          var elem = document.getElementById("footer");
-          elem.style.display = "none";
-        },4000)
+        this.httpservice.post("https://bingsearchapiv1.azurewebsites.net/shmoogleAddUser", request).subscribe((res)=>{
+          console.log("email " + this.EmailModel);
+          this.afterMail = true;
+          this.spinerservice.hide();
+          setTimeout(() => {
+            var elem = document.getElementById("footer");
+            elem.style.display = "none";
+          },4000)
+        },
+        err =>{
+          this.spinerservice.hide();
+          this.openDialog();
+          console.log(err);
+        })
       }else{
         this.error = true;
       }
@@ -133,9 +157,17 @@ export class LandingComponent implements OnInit, OnDestroy{
      * Disable error on mail input
      * @param email 
      */
-    public DisableError():void{debugger;
+    public DisableError():void{
       if(this.error)
         this.error = false;
+    }
+
+    /**
+     * Opens About us page
+     * @param email 
+     */
+    public MoveToAboutUS(): void{
+      this.resultservice.aboutUs = true;
     }
   //#endregion
 

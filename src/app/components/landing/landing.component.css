@@ -1,6 +1,19 @@
 header{
   padding-top: 58px;
   padding-left: 57px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-us{
+    position: relative;
+    right: 2rem;
+    font-size: 1rem;
+    border: none;
+    font-family: open sans-serif;
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 5px;
 }
 
 .small-logo{

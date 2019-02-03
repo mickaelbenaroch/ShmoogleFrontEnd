@@ -13,6 +13,7 @@ import {MatDialogModule} from "@angular/material";
 import { ErrorDialogBoxComponent } from './components/error-dialog-box/error-dialog-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 const appRoutes: Routes = [
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     ResultComponent,
-    ErrorDialogBoxComponent
+    ErrorDialogBoxComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

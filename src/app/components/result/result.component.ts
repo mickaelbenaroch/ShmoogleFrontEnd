@@ -59,6 +59,7 @@ export class ResultComponent implements OnInit {
         this.counter = response.length;
       },
       error =>{
+        this.spinerservice.hide();
         console.log(error);
       })
     }

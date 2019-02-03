@@ -6,6 +6,7 @@ export class ResultsServiceService {
 
   public landing: boolean = true;
   public resultsArray: ResultModel[];
+  public aboutUs: boolean = false;
   constructor() { }
 
 }

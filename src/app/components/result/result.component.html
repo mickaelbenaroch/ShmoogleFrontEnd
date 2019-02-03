@@ -16,7 +16,7 @@
 <main class="results-container">
   <div class="counter">Showing {{counter}} results</div>
   <div class="result-div" *ngFor="let res of results; let i = index">
-      <div class="original-position">Original Position: {{res.originalResultIndex}}</div>
+      <div class="original-position">Original Position: {{res.originalResultIndex + 1}}</div>
       <a href="{{res.url}}" class="title">{{res.name}}</a>
       <a href="{{res.url}}" class="url">{{res.url}}</a>
       <div class="content">{{res.snippet}}</div>
