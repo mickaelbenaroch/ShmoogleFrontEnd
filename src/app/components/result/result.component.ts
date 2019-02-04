@@ -50,7 +50,7 @@ export class ResultComponent implements OnInit {
     sessionStorage.setItem('search', this.text);
     this.spinerservice.show();
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
-    this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
+    this.httpservice.get('https://bingsearchapiv1.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
     (response: ResultModel[]) =>{
       this.spinerservice.hide();
         this.results = response;

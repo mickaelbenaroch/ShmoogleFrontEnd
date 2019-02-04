@@ -69,7 +69,7 @@ export class LandingComponent implements OnInit, OnDestroy{
     sessionStorage.setItem('search', this.text);
     this.spinerservice.show();
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
-    this.httpservice.get('https://bingsearchapi.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(
+    this.httpservice.get('https://bingsearchapiv1.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(
       //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe(
     (response: ResultModel[]) =>{
         this.spinerservice.hide();
