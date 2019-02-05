@@ -44,7 +44,7 @@ export class ResultComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-    localStorage.clear();
+    //localStorage.clear();
    }
   //#endregion
 
