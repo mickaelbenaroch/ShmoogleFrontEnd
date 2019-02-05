@@ -87,7 +87,8 @@ export class ResultComponent implements OnInit, OnDestroy{
      * Navigates to home page
      */
     public returnHome():void{
-      this.resultservice.landing = true;
+      //this.resultservice.landing = true;
+      this.navservice.navigateByUrl('/');
     }
 
      /**
