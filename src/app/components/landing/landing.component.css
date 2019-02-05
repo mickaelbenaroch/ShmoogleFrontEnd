@@ -1,6 +1,6 @@
 .load-bar {
   position: relative;
-  width: 424px;
+  width: 495px;
   height: 3px;
   bottom: 2px;
   background-color: #ffcb04;
@@ -70,7 +70,7 @@ header{
 }
 
 .input{
-  width: 436px;
+  width: 495px;
   margin-top: 19px;
   height: 52px;
   border-left: none;
@@ -87,7 +87,7 @@ header{
 }
 input:focus {
   border: none;
-  border-bottom: 1px solid #33adff;
+  border-bottom: 1px solid #3ec4ba;
   outline: none;
 }
 
@@ -231,6 +231,8 @@ input:focus {
  .close{
    width: 20px;
    cursor: pointer;
+   position: relative;
+    top: 32px;
  }
 
  .visible{
@@ -250,7 +252,7 @@ input:focus {
  .input-div{
   display: flex;
   flex-direction: row;
-  width: 442px;
+  width: 495px;
   margin-left: 18px;
  }
 
@@ -271,6 +273,10 @@ input:focus {
   }
   .load-bar {
     width: 260px;
+  }
+  .close{
+    top: 3px;
+    left: 29px;
   }
 }
 
