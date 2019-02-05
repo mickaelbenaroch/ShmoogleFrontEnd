@@ -19,6 +19,7 @@ export class ResultComponent implements OnInit {
   @Input() results: ResultModel[];
   @Input() text: string;
   public counter: number = 0;
+  public loader: boolean = false;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -48,18 +49,18 @@ export class ResultComponent implements OnInit {
    */
   public search(): void{
     sessionStorage.setItem('search', this.text);
-    this.spinerservice.show();
+    this.loader = true;
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapiv1.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
     (response: ResultModel[]) =>{
-      this.spinerservice.hide();
+      this.loader = false;
         this.results = response;
         this.results[0].id
         console.log(response);
         this.counter = response.length;
       },
       error =>{
-        this.spinerservice.hide();
+        this.loader = false;
         console.log(error);
       })
     }

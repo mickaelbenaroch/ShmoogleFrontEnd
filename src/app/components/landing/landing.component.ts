@@ -25,6 +25,7 @@ export class LandingComponent implements OnInit, OnDestroy{
   public error: boolean;
   public afterMail: boolean;
   public EmailModel: EmailModel = new EmailModel();
+  public loader: boolean = false;
   //#endregion
 
   //#region Constructor + LideCycle Hooks
@@ -67,19 +68,19 @@ export class LandingComponent implements OnInit, OnDestroy{
   //#region  Public Methods
   public search(): void{
     sessionStorage.setItem('search', this.text);
-    this.spinerservice.show();
+    this.loader = true;
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapiv1.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(
       //this.httpservice.get('https://shmoogle.herokuapp.com/devRoute').subscribe(
     (response: ResultModel[]) =>{
-        this.spinerservice.hide();
+        this.loader = false;
         this.resultservice.resultsArray = response;
         console.log(response);
         this.resultservice.landing = false;
         //this.navservice.navigateByUrl("results");
       },
       error =>{
-        this.spinerservice.hide();
+        this.loader = false;
         this.openDialog();
         console.log(error);
       })
@@ -121,7 +122,7 @@ export class LandingComponent implements OnInit, OnDestroy{
      */
     public Send():void{
       if(this.validateEmail(this.email)){
-        this.spinerservice.show();
+        this.loader = true;
         var request = {
           "email": this.email
         }
@@ -130,14 +131,14 @@ export class LandingComponent implements OnInit, OnDestroy{
         this.httpservice.post("https://bingsearchapiv1.azurewebsites.net/shmoogleAddUser", request).subscribe((res)=>{
           console.log("email " + this.EmailModel);
           this.afterMail = true;
-          this.spinerservice.hide();
+          this.loader = false;
           setTimeout(() => {
             var elem = document.getElementById("footer");
             elem.style.display = "none";
           },4000)
         },
         err =>{
-          this.spinerservice.hide();
+          this.loader = false;
           this.openDialog();
           console.log(err);
         })
