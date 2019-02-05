@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ResultModel } from '../../Models/resultmodel';
 import { ResultsServiceService } from '../../Services/results-service.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent implements OnInit {
+export class ResultComponent implements OnInit, OnDestroy{
 
   //#region Public Members
   @Input() results: ResultModel[];
@@ -42,6 +42,10 @@ export class ResultComponent implements OnInit {
       this.counter = this.resultservice.resultsArray.length;
 
   }
+
+  public ngOnDestroy(): void {
+    sessionStorage.clear();
+   }
   //#endregion
 
   //#region Public Members

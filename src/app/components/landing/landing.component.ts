@@ -60,7 +60,7 @@ export class LandingComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-   //sessionStorage.clear();
+   sessionStorage.clear();
   }
 
   //#endregion 
