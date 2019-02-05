@@ -44,7 +44,7 @@ export class LandingComponent implements OnInit, OnDestroy{
               }
 
   public ngOnInit(): void {
-    //var storage = sessionStorage.getItem('search');
+    //var storage = localStorage.getItem('search');
     //if(storage !== undefined && storage !== null && storage !== ""){
     //    this.text = storage;
     //    this.search();
@@ -60,14 +60,14 @@ export class LandingComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-   sessionStorage.clear();
+   //localStorage.clear();
   }
 
   //#endregion 
 
   //#region  Public Methods
   public search(): void{
-    sessionStorage.setItem('search', this.text);
+    localStorage.setItem('search', this.text);
     this.loader = true;
     this.analyticservice.emitEvent("ClickCategory", this.text , "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapiv1.azurewebsites.net/shmoogleShuffle/:' + this.text).subscribe(

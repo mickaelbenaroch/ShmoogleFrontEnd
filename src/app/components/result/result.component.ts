@@ -31,7 +31,7 @@ export class ResultComponent implements OnInit, OnDestroy{
               private spinerservice: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
-     var storage = sessionStorage.getItem('search');
+     var storage = localStorage.getItem('search');
     if(storage !== undefined && storage !== null && storage !== ""){
         this.resultservice.text = storage;
         this.search();
@@ -44,7 +44,7 @@ export class ResultComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-    sessionStorage.clear();
+    localStorage.clear();
    }
   //#endregion
 
@@ -53,7 +53,7 @@ export class ResultComponent implements OnInit, OnDestroy{
    * Searches in bing motor
    */
   public search(): void{
-    //sessionStorage.setItem('search', this.text);
+    //localStorage.setItem('search', this.text);
     this.loader = true;
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapiv1.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
