@@ -44,11 +44,11 @@ export class LandingComponent implements OnInit, OnDestroy{
               }
 
   public ngOnInit(): void {
-    var storage = sessionStorage.getItem('search');
-    if(storage !== undefined && storage !== null && storage !== ""){
-        this.text = storage;
-        this.search();
-    }
+    //var storage = sessionStorage.getItem('search');
+    //if(storage !== undefined && storage !== null && storage !== ""){
+    //    this.text = storage;
+    //    this.search();
+    //}
     setTimeout(()=>{
       var element =  document.getElementById("footer");
       if(element !== null){
@@ -60,7 +60,7 @@ export class LandingComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-   sessionStorage.clear();
+   //sessionStorage.clear();
   }
 
   //#endregion 
@@ -76,8 +76,9 @@ export class LandingComponent implements OnInit, OnDestroy{
         this.loader = false;
         this.resultservice.resultsArray = response;
         console.log(response);
-        this.resultservice.landing = false;
-        //this.navservice.navigateByUrl("results");
+        this.resultservice.text = this.text;
+        //this.resultservice.landing = false;
+        this.navservice.navigateByUrl("results");
       },
       error =>{
         this.loader = false;

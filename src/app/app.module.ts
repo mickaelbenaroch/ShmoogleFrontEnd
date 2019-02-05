@@ -18,7 +18,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
-  //{ path: 'results', component:  ResultComponent},
+  { path: 'results', component:  ResultComponent},
   { path: '**', component: LandingComponent }
 ];
 

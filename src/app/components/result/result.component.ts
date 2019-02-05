@@ -17,7 +17,7 @@ export class ResultComponent implements OnInit {
 
   //#region Public Members
   @Input() results: ResultModel[];
-  @Input() text: string;
+  public text: string;
   public counter: number = 0;
   public loader: boolean = false;
   //#endregion
@@ -31,11 +31,12 @@ export class ResultComponent implements OnInit {
               private spinerservice: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
-    // var storage = sessionStorage.getItem('search');
-    // if(storage !== undefined && storage !== null && storage !== ""){
-    //     this.text = storage;
-    //     this.search();
-    // }
+     var storage = sessionStorage.getItem('search');
+    if(storage !== undefined && storage !== null && storage !== ""){
+        this.resultservice.text = storage;
+        this.search();
+    }
+    this.text = this.resultservice.text;
     this.results = this.resultservice.resultsArray;
     if(this.resultservice.resultsArray !== undefined)
       this.counter = this.resultservice.resultsArray.length;
@@ -48,13 +49,14 @@ export class ResultComponent implements OnInit {
    * Searches in bing motor
    */
   public search(): void{
-    sessionStorage.setItem('search', this.text);
+    //sessionStorage.setItem('search', this.text);
     this.loader = true;
     this.analyticservice.emitEvent("ClickCategory", this.text, "ClickLabel", 1);
     this.httpservice.get('https://bingsearchapiv1.azurewebsites.net/shmoogleShuffle/:'+ this.text).subscribe(
     (response: ResultModel[]) =>{
       this.loader = false;
         this.results = response;
+        this.resultservice.text = this.text;
         this.results[0].id
         console.log(response);
         this.counter = response.length;
