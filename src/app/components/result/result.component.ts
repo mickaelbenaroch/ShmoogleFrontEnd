@@ -31,12 +31,12 @@ export class ResultComponent implements OnInit, OnDestroy{
               private spinerservice: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
-     var storage = localStorage.getItem('search');
+    var storage = localStorage.getItem('search');
     if(storage !== undefined && storage !== null && storage !== ""){
         this.resultservice.text = storage;
+        this.text = this.resultservice.text;
         this.search();
     }
-    this.text = this.resultservice.text;
     this.results = this.resultservice.resultsArray;
     if(this.resultservice.resultsArray !== undefined)
       this.counter = this.resultservice.resultsArray.length;
