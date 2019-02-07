@@ -42,5 +42,8 @@
     .about,.p-1,.p-2{
         width: unset !important;
     }
+    .img{
+        width: 62%;
+    }
 
 }
