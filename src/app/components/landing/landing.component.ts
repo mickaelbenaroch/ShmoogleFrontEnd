@@ -169,7 +169,8 @@ export class LandingComponent implements OnInit, OnDestroy{
      * @param email 
      */
     public MoveToAboutUS(): void{
-      this.resultservice.aboutUs = true;
+      //this.resultservice.aboutUs = true;
+      this.navservice.navigateByUrl("aboutus");
     }
   //#endregion
 
